@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2开箱模拟器</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="app">
+        <h1 class="title">CS2 武器箱开箱模拟器</h1>
+        <div class="top-buttons">
+            <button id="statsBtn" class="btn-stats">📊 开箱统计</button>
+            <button id="soundBtn" class="btn-stats">🔊 音效开</button>
+        </div>
+
+        <div class="case-grid" id="caseGrid"></div>
+
+        <div class="open-area" id="openArea" style="display:none;">
+            <!-- 阶段1：武器箱详情页 -->
+            <div class="case-detail" id="caseDetail">
+                <button id="backBtn1" class="btn-back">← 返回选箱</button>
+                <div class="detail-glow"></div>
+                <img id="detailCaseImg" src="" alt="" class="detail-case-img">
+                <h2 class="detail-title">开箱</h2>
+                <p class="detail-subtitle" id="detailSubtitle">解锁武器箱</p>
+                <div class="key-row">
+                    <span class="key-icon">🔑</span>
+                    <span id="detailKeyText">使用武器箱钥匙</span>
+                </div>
+                <div class="controls">
+                    <label class="speed-label">滚动速度：
+                        <input type="range" id="speedSlider" min="0.5" max="2" step="0.1" value="1">
+                        <span id="speedValue">1.0x</span>
+                    </label>
+                    <label class="skip-label">
+                        <input type="checkbox" id="skipAnim"> 跳过动画
+                    </label>
+                </div>
+                <div class="open-buttons">
+                    <button id="openBtn" class="btn-open">开启武器箱</button>
+                    <button id="tenBtn" class="btn-ten">十连开</button>
+                </div>
+                <div class="skin-preview" id="skinPreview"></div>
+            </div>
+
+            <!-- 阶段2：滚动条 -->
+            <div class="reel-section" id="reelSection" style="display:none;">
+                <div class="case-header">
+                    <img id="currentCaseImg" src="" alt="">
+                    <span id="currentCaseName"></span>
+                    <button id="backBtn2" class="btn-back">← 返回选箱</button>
+                </div>
+                <div class="reel-bg-glow"></div>
+                <div class="reel-container">
+                    <div class="reel-marker"></div>
+                    <div class="reel" id="reel"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 单抽结果弹窗 -->
+        <div class="result-modal" id="resultModal" style="display:none;">
+            <div class="result-card" id="resultCard">
+                <img id="resultImg" src="" alt="">
+                <h2 id="resultName"></h2>
+                <p id="resultRarity"></p>
+                <div class="float-bar-wrap">
+                    <div class="float-bar">
+                        <div class="float-marker" id="floatMarker"></div>
+                    </div>
+                    <div class="float-labels">
+                        <span>崭新</span><span>略磨</span><span>久经</span><span>破损</span><span>战痕</span>
+                    </div>
+                </div>
+                <p id="resultFloat"></p>
+                <p id="resultPattern"></p>
+                <button id="closeResult" class="btn-close">继续开箱</button>
+            </div>
+        </div>
+
+        <!-- 十连开结果弹窗 -->
+        <div class="ten-modal" id="tenModal" style="display:none;">
+            <div class="ten-card">
+                <h2>十连开结果</h2>
+                <div class="ten-grid" id="tenGrid"></div>
+                <button id="closeTen" class="btn-close">继续</button>
+            </div>
+        </div>
+
+        <!-- 开箱统计弹窗 -->
+        <div class="stats-modal" id="statsModal" style="display:none;">
+            <div class="stats-card">
+                <div class="stats-header">
+                    <h2>开箱统计</h2>
+                    <button id="closeStats" class="btn-close-small">✕</button>
+                </div>
+                <div class="stats-total">总开箱次数：<span id="statsTotal">0</span></div>
+                <div class="stats-breakdown" id="statsBreakdown"></div>
+                <div class="stats-history-title">最近开箱记录</div>
+                <div class="stats-history" id="statsHistory"></div>
+                <button id="clearStats" class="btn-clear">清空记录</button>
+            </div>
+        </div>
+
+        <p id="loadingTip" class="loading-tip">数据加载中...</p>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
